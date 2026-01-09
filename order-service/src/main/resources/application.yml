@@ -33,9 +33,19 @@ resilience4j:
   circuitbreaker:
     instances:
       inventory-service:
-        slidingWindowType: COUNT_BASED
         slidingWindowSize: 10
-        minimumNumberOfCalls: 5
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
-        permittedNumberOfCallsInHalfOpenState: 3
+
+  retry:
+    instances:
+      inventory-service:
+        maxAttempts: 3
+        waitDuration: 500ms
+
+  ratelimiter:
+    instances:
+      inventory-service:
+        limitForPeriod: 5
+        limitRefreshPeriod: 1s
+        timeoutDuration: 0
