@@ -42,10 +42,12 @@ public class OrderService {
 
         List<InventoryResponse> items = inventoryFeignClient.isInStock(skuCodes);
 
-        items.forEach(inventoryResponse -> {
-            if(!inventoryResponse.isInStock())             throw new IllegalArgumentException("Product is not in stock, please try again later");
+        boolean allInStock = items.size() == skuCodes.size() && items.stream().allMatch(InventoryResponse::isInStock);
 
-        });
+        if (!allInStock) {
+            throw new IllegalArgumentException("Product is not in stock, please try again later");
+        }
+
         orderRepo.save(order);
         kafkaTemplate.send("notificationTopic",new OrderPlacedEvent(order.getOrderNumber()));
         return "orderPlaced";
