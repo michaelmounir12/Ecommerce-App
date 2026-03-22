@@ -1,6 +1,9 @@
 # Microservices Marketplace
 ### A Modern E-commerce Platform Built on Microservices
 
+<img width="864" height="622" alt="Screenshot 2026-01-21 002457" src="https://github.com/user-attachments/assets/21e3ed38-57d9-4a2a-9ba5-0679d742b444" />
+
+
 ## About This Project
 
 Micro Marketplace represents a scalable e-commerce solution architected using microservices principles and powered by Spring ecosystem technologies alongside industry-standard open-source tools.
